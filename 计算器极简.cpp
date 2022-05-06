@@ -1,6 +1,172 @@
 #include<stdio.h>
 
 
+//int jia(int x, int y)
+//{
+//	return (x + y);
+//}
+//
+//
+//int jian(int x, int y)
+//{
+//	return (x - y);
+//}
+//
+//
+//int cheng(int x, int y)
+//{
+//	return (x * y);
+//}
+//
+//
+//int chu(int x, int y)
+//{
+//	return (x / y);
+//}
+//
+//void menu()
+//{
+//	printf("*****************************\n");
+//	printf("****** 1：加法  2：减法 ******\n");
+//	printf("****** 3：乘法  4：除法 ******\n");
+//	printf("*******   0：退出程序   ******\n");
+//	printf("*****************************\n");
+//
+//}
+//
+//int main()
+//{
+//	int input = 0;
+//	
+//	do
+//	{
+//		
+//		int x = 0;
+//		int y = 0;
+//		menu();
+//		int ret = 0;
+//		printf("请输入指令>");
+//		scanf_s("%d", &input);
+//		switch (input)
+//		{
+//		case 1:
+//			printf("请输入操作数：");
+//			scanf_s("%d %d", &x, &y);
+//			ret=jia(x,y);
+//			printf("%d\n", ret);
+//			break;
+//		case 2:
+//			printf("请输入操作数：");
+//			scanf_s("%d %d", &x, &y);
+//			ret = jian(x,y);
+//			printf("%d\n", ret);
+//			break;
+//		case 3:
+//			printf("请输入操作数：");
+//			scanf_s("%d %d", &x, &y);
+//			ret = cheng(x, y);
+//			printf("%d\n", ret);
+//			break;
+//		case 4:
+//			printf("请输入操作数：");
+//			scanf_s("%d %d", &x, &y);
+//			ret = chu(x, y);
+//			printf("%d\n", ret);
+//			break;
+//		case 0:
+//			printf("退出程序");
+//			break;
+//		default:
+//			printf("输入错误，请重新输入：/n");
+//			break;
+//		}
+//	} while (input);
+//	return 0;
+//}
+
+////利用回调函数 把相同的语句放到calc函数里  形参是加减乘除的函数指针
+//int jia(int x, int y)
+//{
+//	return (x + y);
+//}
+//
+//
+//int jian(int x, int y)
+//{
+//	return (x - y);
+//}
+//
+//
+//int cheng(int x, int y)
+//{
+//	return (x * y);
+//}
+//
+//
+//int chu(int x, int y)
+//{
+//	return (x / y);
+//}
+//
+//int calc(int(*pl)(int, int))
+//{
+//	int x = 0;
+//	int y = 0;
+//	printf("请输入操作数：");
+//	scanf_s("%d %d", &x, &y);
+//	
+//	return pl(x, y);
+//}
+//
+//void menu()
+//{
+//	printf("*****************************\n");
+//	printf("****** 1：加法  2：减法 ******\n");
+//	printf("****** 3：乘法  4：除法 ******\n");
+//	printf("*******   0：退出程序   ******\n");
+//	printf("*****************************\n");
+//
+//}
+//
+//int main()
+//{
+//	int input = 0;
+//
+//	do
+//	{
+//
+//		
+//		menu();
+//		int ret = 0;
+//		printf("请输入指令>");
+//		scanf_s("%d", &input);
+//		switch (input)
+//		{
+//		case 1:
+//			printf("%d\n", calc(jia));
+//			break;
+//		case 2:
+//			printf("%d\n", calc(jian));
+//			break;
+//		case 3:
+//			printf("%d\n", calc(cheng));
+//			break;
+//		case 4:
+//			printf("%d\n", calc(chu));
+//			break;
+//		case 0:
+//			printf("退出程序");
+//			break;
+//		default:
+//			printf("输入错误，请重新输入：/n");
+//			break;
+//		}
+//	} while (input);
+//	return 0;
+//}
+
+
+
 int jia(int x, int y)
 {
 	return (x + y);
@@ -37,49 +203,34 @@ void menu()
 int main()
 {
 	int input = 0;
-	
+
 	do
 	{
-		
+		int (*Pfrr[5])(int, int) = { NULL,jia,jian,cheng,chu };
 		int x = 0;
 		int y = 0;
 		menu();
 		int ret = 0;
 		printf("请输入指令>");
 		scanf_s("%d", &input);
-		switch (input)
+		if (input > 0 && input <= 4)
 		{
-		case 1:
+
 			printf("请输入操作数：");
 			scanf_s("%d %d", &x, &y);
-			ret=jia(x,y);
+			int ret = Pfrr[input](x, y);
 			printf("%d\n", ret);
-			break;
-		case 2:
-			printf("请输入操作数：");
-			scanf_s("%d %d", &x, &y);
-			ret = jian(x,y);
-			printf("%d\n", ret);
-			break;
-		case 3:
-			printf("请输入操作数：");
-			scanf_s("%d %d", &x, &y);
-			ret = cheng(x, y);
-			printf("%d\n", ret);
-			break;
-		case 4:
-			printf("请输入操作数：");
-			scanf_s("%d %d", &x, &y);
-			ret = chu(x, y);
-			printf("%d\n", ret);
-			break;
-		case 0:
-			printf("退出程序");
-			break;
-		default:
-			printf("输入错误，请重新输入：/n");
+		}
+		else if (input == 0)
+		{
+			printf("退出程序！");
 			break;
 		}
-	} while (input);
+		else
+		{
+			printf("输入错误，请重新输入\n");
+		}
+	}
+		while (input);
 	return 0;
 }
