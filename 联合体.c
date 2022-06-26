@@ -41,7 +41,7 @@ int main()
 	union Y
 	{
 		char s[5];
-		int i;
+		int i;3
 	}y;
 	printf("%d\n", y);//输出8 最大对其数4 能容纳5 所以是8
 
